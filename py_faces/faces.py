@@ -38,8 +38,8 @@ class faces(QtWidgets.QMainWindow, Ui_MainWindow):
     def get_camera_frame(self):
         frame = self.camera.get_frame()
         if self.face_detect:
-            faces = self.face_detector.find_in_frame(frame)
-            for (x, y, w, h) in faces:
+            bbox, faces = self.face_detector.in_frame(frame)
+            for (x, y, w, h) in bbox:
                 cv2.rectangle(frame, (x, y), (x+w, y+h), (0, 255, 0), 2)
 
         img = QtGui.QImage(frame, frame.shape[1], frame.shape[0], QtGui.QImage.Format_RGB888)
