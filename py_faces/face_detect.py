@@ -3,7 +3,7 @@ import cv2
 
 class FaceDetect():
     def __init__(self):
-        cascPath = 'haarcascade_frontalface_default.xml'
+        cascPath = 'opencv_files/haarcascade_frontalface_24x24.xml'
         self.faceCascade = cv2.CascadeClassifier(cascPath)
 
     def find_in_frame(self, frame):
