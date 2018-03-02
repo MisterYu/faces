@@ -33,5 +33,5 @@ class cv_camera():
             self.isCapturing = False
     # ------ Modification ------ #
 
-    def deleteLater(self):
+    def release(self):
         self.cap.release()
