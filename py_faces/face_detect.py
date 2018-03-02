@@ -3,6 +3,7 @@ import cv2
 
 class FaceDetect():
     def __init__(self):
+        # TODO enable swapping different CascadeClassifiers or parameters
         cascPath = 'opencv_files/haarcascade_frontalface_24x24.xml'
         self.faceCascade = cv2.CascadeClassifier(cascPath)
 
