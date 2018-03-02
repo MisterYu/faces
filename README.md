@@ -1,7 +1,7 @@
-face detection
+face detection - yup
 
-face recognition
+face recognition - nope
 
-face something something
+face something something - nope
 
-face another something something?
+face another something something? - nope
