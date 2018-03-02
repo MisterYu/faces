@@ -17,56 +17,51 @@
    <property name="layoutDirection">
     <enum>Qt::LeftToRight</enum>
    </property>
-   <layout class="QHBoxLayout" name="horizontalLayout">
-    <item>
-     <layout class="QVBoxLayout" name="dispaly_verticalLayout">
-      <item>
-       <widget class="QLabel" name="video_frame_label">
-        <property name="text">
-         <string/>
-        </property>
-       </widget>
-      </item>
-     </layout>
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="0" column="0" colspan="3">
+     <widget class="QLabel" name="video_frame_label">
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
     </item>
-    <item>
-     <layout class="QVBoxLayout" name="control_info_Layout">
-      <item>
-       <widget class="QLabel" name="info_label">
-        <property name="text">
-         <string/>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="start_pushButton">
-        <property name="text">
-         <string>Start</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="stop_pushButton">
-        <property name="text">
-         <string>Stop</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="end_pushButton">
-        <property name="text">
-         <string>End</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="capture_pushButton">
-        <property name="text">
-         <string>Capture</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
+    <item row="3" column="2">
+     <widget class="QCheckBox" name="face_detect_checkBox">
+      <property name="text">
+       <string>Face Detect</string>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="0">
+     <widget class="QPushButton" name="start_pushButton">
+      <property name="text">
+       <string>Start Camera</string>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="0">
+     <widget class="QPushButton" name="stop_pushButton">
+      <property name="text">
+       <string>Stop Camera</string>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="1">
+     <widget class="QLabel" name="face_detect_label">
+      <property name="text">
+       <string>faces detected:</string>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="1">
+     <widget class="QLabel" name="info_label">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
+      <property name="text">
+       <string>info</string>
+      </property>
+     </widget>
     </item>
    </layout>
   </widget>
