@@ -42,3 +42,13 @@ class face_recognition():
         # train
         if self.faces and self.labels and len(self.faces) == len(self.labels):
             self.face_recognizer.train(self.faces, np.array(self.labels))
+
+    def predict_img(self, img):
+        bbox, faces = self.face_detector.in_frame(img)
+        label, confidence = self.face_recognizer.predict(faces[0])
+        return label, confidence
+
+    def predict_file(self, fname):
+        img = cv2.imread(fname)
+        label, confidence = self.predict_img(img)
+        return label, confidence
