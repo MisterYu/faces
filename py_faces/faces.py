@@ -18,6 +18,9 @@ class faces(QtWidgets.QMainWindow, Ui_MainWindow):
         self.face_detect = False
         self.face_detect_checkBox.stateChanged.connect(self.update_face_detect)
 
+        self.face_recognition = False
+        self.face_recognition_checkBox.stateChanged.connect(self.update_face_recognition)
+
     def start(self):
         if not self.camera:
             self.camera = cv_camera(0)
@@ -30,6 +33,9 @@ class faces(QtWidgets.QMainWindow, Ui_MainWindow):
 
     def update_face_detect(self):
         self.face_detect = self.face_detect_checkBox.isChecked()
+
+    def update_face_recognition(self):
+        self.face_recognition = self.face_recognition_checkBox.isChecked()
 
     def stop(self):
         self.timer.stop()

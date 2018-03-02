@@ -4,7 +4,7 @@ import numpy as np
 from face_detect import FaceDetect
 
 
-class face_recognition():
+class FaceRecognition():
     def __init__(self):
         self.face_detector = FaceDetect()
         self.face_recognizer = cv2.face.LBPHFaceRecognizer_create()
