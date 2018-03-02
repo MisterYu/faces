@@ -8,20 +8,25 @@ class faces(QtWidgets.QMainWindow, Ui_MainWindow):
     def __init__(self, parent=None):
         super(faces, self).__init__()
         self.setupUi(self)
-        self.capture = None
+        self.camera = None
         self.start_pushButton.clicked.connect(self.start)
+        self.info_label.setText('so fresh and so clean')
 
     def start(self):
-        if not self.capture:
+        if not self.camera:
             self.camera = cv_camera(0)
             self.stop_pushButton.clicked.connect(self.stop)
 
         self.timer = QtCore.QTimer()
         self.timer.timeout.connect(self.get_camera_frame)
         self.timer.start(1000./self.camera.fps)
+        self.info_label.setText('camera started')
 
     def stop(self):
         self.timer.stop()
+        self.camera.release()
+        self.camera = None
+        self.info_label.setText('camera stopped')
 
     def get_camera_frame(self):
         pix = self.camera.get_frame()
