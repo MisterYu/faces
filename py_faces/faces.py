@@ -13,6 +13,8 @@ class faces(QtWidgets.QMainWindow, Ui_MainWindow):
         self.setupUi(self)
         self.camera = None
         self.face_detector = FaceDetect()
+        self.face_recognizer = FaceRecognition()
+        self.face_recognizer.train('../face_data/')
         self.start_pushButton.clicked.connect(self.start)
         self.info_label.setText('so fresh and so clean')
 
@@ -21,6 +23,9 @@ class faces(QtWidgets.QMainWindow, Ui_MainWindow):
 
         self.face_recognition = False
         self.face_recognition_checkBox.stateChanged.connect(self.update_face_recognition)
+
+        self.b_threshold = self.confidence_spinBox.value()
+        self.confidence_spinBox.valueChanged.connect(self.update_threshold)
 
     def start(self):
         if not self.camera:
@@ -40,7 +45,10 @@ class faces(QtWidgets.QMainWindow, Ui_MainWindow):
     def update_face_recognition(self):
         self.face_recognition = self.face_recognition_checkBox.isChecked()
         if not self.face_recognition:
-            self.face_recognition_label.setText('face recognition off')
+            self.face_recognition_label.setText('Beyonce recognition off')
+
+    def update_threshold(self):
+        self.b_threshold = self.confidence_spinBox.value()
 
     def stop(self):
         self.timer.stop()
@@ -51,6 +59,13 @@ class faces(QtWidgets.QMainWindow, Ui_MainWindow):
         if self.face_detect:
             bbox, faces = self.face_detector.in_frame(frame)
             self.face_detect_label.setText('{0} faces found'.format(len(faces)))
+            if self.face_recognition:
+                for face in faces:
+                    label, confidence = self.face_recognizer.predict_face(face)
+                    str_recog = 'Beyonce not recognized'
+                    if confidence > self.b_threshold:
+                        str_recog = 'Beyonce recognized @{0:5.4f} confidence'.format(confidence)
+                    self.face_recognition_label.setText(str_recog)
             for (x, y, w, h) in bbox:
                 cv2.rectangle(frame, (x, y), (x+w, y+h), (0, 255, 0), 2)
 

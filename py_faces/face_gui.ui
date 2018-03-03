@@ -36,9 +36,12 @@
       <property name="text">
        <string>Face Detect</string>
       </property>
+      <property name="checked">
+       <bool>false</bool>
+      </property>
      </widget>
     </item>
-    <item row="0" column="0" colspan="4">
+    <item row="0" column="0" colspan="5">
      <widget class="QLabel" name="video_frame_label">
       <property name="text">
        <string/>
@@ -52,24 +55,14 @@
       </property>
      </widget>
     </item>
-    <item row="3" column="2">
+    <item row="3" column="3">
      <widget class="QLabel" name="face_detect_label">
       <property name="text">
        <string>faces detection off</string>
       </property>
      </widget>
     </item>
-    <item row="2" column="2">
-     <widget class="QLabel" name="info_label">
-      <property name="enabled">
-       <bool>true</bool>
-      </property>
-      <property name="text">
-       <string>info</string>
-      </property>
-     </widget>
-    </item>
-    <item row="1" column="3">
+    <item row="1" column="4">
      <spacer name="verticalSpacer_2">
       <property name="orientation">
        <enum>Qt::Vertical</enum>
@@ -84,8 +77,35 @@
     </item>
     <item row="4" column="0">
      <widget class="QCheckBox" name="face_recognition_checkBox">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
       <property name="text">
-       <string>Face Recognition</string>
+       <string>Beyonce Recognition</string>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="2">
+     <widget class="QSpinBox" name="confidence_spinBox">
+      <property name="value">
+       <number>75</number>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="3">
+     <widget class="QLabel" name="face_recognition_label">
+      <property name="text">
+       <string>Beyonce recognition off</string>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="1">
+     <widget class="QLabel" name="confidence_label">
+      <property name="text">
+       <string>Confidence</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
       </property>
      </widget>
     </item>
@@ -96,10 +116,13 @@
       </property>
      </widget>
     </item>
-    <item row="4" column="2">
-     <widget class="QLabel" name="face_recognition_label">
+    <item row="2" column="2">
+     <widget class="QLabel" name="info_label">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
       <property name="text">
-       <string>faces recognition off</string>
+       <string>info</string>
       </property>
      </widget>
     </item>
