@@ -41,7 +41,7 @@
       </property>
      </widget>
     </item>
-    <item row="0" column="0" colspan="5">
+    <item row="0" column="0" colspan="7">
      <widget class="QLabel" name="video_frame_label">
       <property name="text">
        <string/>
@@ -55,14 +55,7 @@
       </property>
      </widget>
     </item>
-    <item row="3" column="3">
-     <widget class="QLabel" name="face_detect_label">
-      <property name="text">
-       <string>faces detection off</string>
-      </property>
-     </widget>
-    </item>
-    <item row="1" column="4">
+    <item row="1" column="6">
      <spacer name="verticalSpacer_2">
       <property name="orientation">
        <enum>Qt::Vertical</enum>
@@ -85,20 +78,6 @@
       </property>
      </widget>
     </item>
-    <item row="4" column="2">
-     <widget class="QSpinBox" name="confidence_spinBox">
-      <property name="value">
-       <number>75</number>
-      </property>
-     </widget>
-    </item>
-    <item row="4" column="3">
-     <widget class="QLabel" name="face_recognition_label">
-      <property name="text">
-       <string>Beyonce recognition off</string>
-      </property>
-     </widget>
-    </item>
     <item row="4" column="1">
      <widget class="QLabel" name="confidence_label">
       <property name="text">
@@ -109,20 +88,51 @@
       </property>
      </widget>
     </item>
-    <item row="2" column="1">
-     <widget class="QPushButton" name="stop_pushButton">
-      <property name="text">
-       <string>Stop Camera</string>
-      </property>
-     </widget>
-    </item>
-    <item row="2" column="2">
+    <item row="2" column="4">
      <widget class="QLabel" name="info_label">
       <property name="enabled">
        <bool>true</bool>
       </property>
       <property name="text">
        <string>info</string>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="3">
+     <widget class="QSpinBox" name="camera_spinBox"/>
+    </item>
+    <item row="4" column="2">
+     <widget class="QSpinBox" name="confidence_spinBox">
+      <property name="value">
+       <number>75</number>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="2">
+     <widget class="QLabel" name="label">
+      <property name="text">
+       <string>Switch Camera</string>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="3">
+     <widget class="QLabel" name="face_recognition_label">
+      <property name="text">
+       <string>Beyonce recognition off</string>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="3">
+     <widget class="QLabel" name="face_detect_label">
+      <property name="text">
+       <string>faces detection off</string>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="1">
+     <widget class="QPushButton" name="stop_pushButton">
+      <property name="text">
+       <string>Stop Camera</string>
       </property>
      </widget>
     </item>

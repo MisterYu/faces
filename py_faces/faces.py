@@ -11,11 +11,15 @@ class faces(QtWidgets.QMainWindow, Ui_MainWindow):
     def __init__(self, parent=None):
         super(faces, self).__init__()
         self.setupUi(self)
-        self.camera = None
+
         self.face_detector = FaceDetect()
         self.face_recognizer = FaceRecognition()
         self.face_recognizer.train('../face_data/')
+
+        self.camera = cv_camera()
         self.start_pushButton.clicked.connect(self.start)
+        self.camera_spinBox.setMaximum(self.camera.n_cameras-1)
+        self.camera_spinBox.valueChanged.connect(self.change_camera)
         self.info_label.setText('so fresh and so clean')
 
         self.face_detect = False
@@ -49,6 +53,10 @@ class faces(QtWidgets.QMainWindow, Ui_MainWindow):
 
     def update_threshold(self):
         self.b_threshold = self.confidence_spinBox.value()
+
+    def change_camera(self):
+        i_new_cam = self.camera_spinBox.value()
+        self.camera.i_current_camera = i_new_cam
 
     def stop(self):
         self.timer.stop()
