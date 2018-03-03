@@ -69,9 +69,9 @@ class Ui_MainWindow(object):
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
         self.face_detect_checkBox.setText(_translate("MainWindow", "Face Detect"))
         self.start_pushButton.setText(_translate("MainWindow", "Start Camera"))
-        self.face_detect_label.setText(_translate("MainWindow", "faces detected:"))
+        self.face_detect_label.setText(_translate("MainWindow", "faces detection off"))
         self.info_label.setText(_translate("MainWindow", "info"))
         self.face_recognition_checkBox.setText(_translate("MainWindow", "Face Recognition"))
         self.stop_pushButton.setText(_translate("MainWindow", "Stop Camera"))
-        self.face_recognition_label.setText(_translate("MainWindow", "faces recognized:"))
+        self.face_recognition_label.setText(_translate("MainWindow", "faces recognition off"))
 

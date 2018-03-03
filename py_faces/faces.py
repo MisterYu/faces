@@ -3,6 +3,7 @@ from PyQt5 import QtCore, QtWidgets, QtGui
 from face_gui import Ui_MainWindow
 from cv_camera import cv_camera
 from face_detect import FaceDetect
+from face_recognition import FaceRecognition
 import cv2
 
 
@@ -33,9 +34,13 @@ class faces(QtWidgets.QMainWindow, Ui_MainWindow):
 
     def update_face_detect(self):
         self.face_detect = self.face_detect_checkBox.isChecked()
+        if not self.face_detect:
+            self.face_detect_label.setText('face dectection off')
 
     def update_face_recognition(self):
         self.face_recognition = self.face_recognition_checkBox.isChecked()
+        if not self.face_recognition:
+            self.face_recognition_label.setText('face recognition off')
 
     def stop(self):
         self.timer.stop()
@@ -45,6 +50,7 @@ class faces(QtWidgets.QMainWindow, Ui_MainWindow):
         frame = self.camera.get_frame()
         if self.face_detect:
             bbox, faces = self.face_detector.in_frame(frame)
+            self.face_detect_label.setText('{0} faces found'.format(len(faces)))
             for (x, y, w, h) in bbox:
                 cv2.rectangle(frame, (x, y), (x+w, y+h), (0, 255, 0), 2)
 
