@@ -1,19 +1,23 @@
-from PyQt5 import QtGui
 import cv2
 
 
 class cv_camera():
     def __init__(self, *args):
         self.fps = 24
-        self.cap = cv2.VideoCapture(*args)
         self.isCapturing = False
         self.ith_frame = 1
+        max_cameras = 10
+        self.cameras = [cv2.VideoCapture(i)
+                        for i in range(max_cameras)
+                        if cv2.VideoCapture(i).isOpened()]
+        self.n_cameras = len(self.cameras)
+        self.i_current_camera = 0
 
     def setFPS(self, fps):
         self.fps = fps
 
     def get_frame(self):
-        ret, frame = self.cap.read()
+        ret, frame = self.cameras[self.i_current_camera].read()
 
         # Save images if isCapturing
         if self.isCapturing:
@@ -29,7 +33,7 @@ class cv_camera():
             self.isCapturing = True
         else:
             self.isCapturing = False
-    # ------ Modification ------ #
 
     def release(self):
-        self.cap.release()
+        for camera in self.cameras:
+            camera.release()
