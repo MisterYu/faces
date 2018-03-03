@@ -57,17 +57,19 @@ class faces(QtWidgets.QMainWindow, Ui_MainWindow):
     def get_camera_frame(self):
         frame = self.camera.get_frame()
         if self.face_detect:
-            bbox, faces = self.face_detector.in_frame(frame)
+            bboxes, faces = self.face_detector.in_frame(frame)
             self.face_detect_label.setText('{0} faces found'.format(len(faces)))
             if self.face_recognition:
-                for face in faces:
+                for bbox, face in zip(bboxes, faces):
                     label, confidence = self.face_recognizer.predict_face(face)
                     str_recog = 'Beyonce not recognized'
+                    box_color = (204, 255, 0)
                     if confidence > self.b_threshold:
                         str_recog = 'Beyonce recognized @{0:5.4f} confidence'.format(confidence)
+                        box_color = (209, 159, 232)
                     self.face_recognition_label.setText(str_recog)
-            for (x, y, w, h) in bbox:
-                cv2.rectangle(frame, (x, y), (x+w, y+h), (0, 255, 0), 2)
+                    x, y, w, h = bbox
+                    cv2.rectangle(frame, (x, y), (x+w, y+h), box_color, 2)
 
         img = QtGui.QImage(frame, frame.shape[1], frame.shape[0], QtGui.QImage.Format_RGB888)
         pix = QtGui.QPixmap.fromImage(img)
