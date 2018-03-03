@@ -53,14 +53,21 @@ class FaceRecognition():
         if self.faces and self.labels and len(self.faces) == len(self.labels):
             self.face_recognizer.train(self.faces, np.array(self.labels))
 
+    def predict_face(self, face_img):
+        img_copy = face_img.copy()
+        if len(img_copy.shape) == 3:
+            img_copy = cv2.cvtColor(img_copy, cv2.COLOR_BGR2GRAY)
+        label, confidence = self.face_recognizer.predict(img_copy)
+        return label, confidence
+
     def predict_img(self, img):
-        # find face(s)
+        # find face(s) in image
         bbox, faces = self.face_detector.in_frame(img)
         # make face same size as training data
         if self.avg_face_dim:
             faces[0] = cv2.resize(faces[0], self.avg_face_dim)
         # predict
-        label, confidence = self.face_recognizer.predict(faces[0])
+        label, confidence = self.predict_face(faces[0])
         return label, confidence
 
     def predict_file(self, fname):
