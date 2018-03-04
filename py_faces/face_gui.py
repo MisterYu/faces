@@ -65,6 +65,9 @@ class Ui_MainWindow(object):
         self.stop_pushButton = QtWidgets.QPushButton(self.face_gui_centralWidget)
         self.stop_pushButton.setObjectName("stop_pushButton")
         self.gridLayout.addWidget(self.stop_pushButton, 2, 1, 1, 1)
+        self.hulk_checkBox = QtWidgets.QCheckBox(self.face_gui_centralWidget)
+        self.hulk_checkBox.setObjectName("hulk_checkBox")
+        self.gridLayout.addWidget(self.hulk_checkBox, 3, 1, 1, 1)
         MainWindow.setCentralWidget(self.face_gui_centralWidget)
         self.menuBar = QtWidgets.QMenuBar(MainWindow)
         self.menuBar.setGeometry(QtCore.QRect(0, 0, 879, 22))
@@ -92,4 +95,5 @@ class Ui_MainWindow(object):
         self.face_recognition_label.setText(_translate("MainWindow", "Beyonce recognition off"))
         self.face_detect_label.setText(_translate("MainWindow", "faces detection off"))
         self.stop_pushButton.setText(_translate("MainWindow", "Stop Camera"))
+        self.hulk_checkBox.setText(_translate("MainWindow", "Hulk out"))
 

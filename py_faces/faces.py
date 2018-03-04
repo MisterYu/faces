@@ -5,6 +5,7 @@ from cv_camera import cv_camera
 from face_detect import FaceDetect
 from face_recognition import FaceRecognition
 import cv2
+import hulk
 
 
 class faces(QtWidgets.QMainWindow, Ui_MainWindow):
@@ -26,6 +27,9 @@ class faces(QtWidgets.QMainWindow, Ui_MainWindow):
         self.camera_spinBox.valueChanged.connect(self.change_camera)
         self.info_label.setText('ready to go!')
 
+        self.hulk_out = False
+        self.hulk_checkBox.stateChanged.connect(self.update_hulk_out)
+
         self.face_detect = False
         self.face_detect_checkBox.stateChanged.connect(self.update_face_detect)
 
@@ -42,6 +46,9 @@ class faces(QtWidgets.QMainWindow, Ui_MainWindow):
         self.timer.timeout.connect(self.process_display_frame)
         self.timer.start(1000./self.camera.fps)
         self.info_label.setText('camera started')
+
+    def update_hulk_out(self):
+        self.hulk_out = self.hulk_checkBox.isChecked()
 
     def update_face_detect(self):
         self.face_detect = self.face_detect_checkBox.isChecked()
@@ -89,6 +96,11 @@ class faces(QtWidgets.QMainWindow, Ui_MainWindow):
                     self.face_recognition_label.setText(str_recog)
                 # draw bounding boxes
                 x, y, w, h = bbox
+                if self.hulk_out:
+                    # make face green
+                    hulk_face = hulk.angry(face)
+                    # swap out face
+                    frame[y:y+h, x:x+w, :] = hulk_face
                 cv2.rectangle(frame, (x, y), (x+w, y+h), box_color, 2)
 
         # do Qt things to frame so it can be set in a QLabel
