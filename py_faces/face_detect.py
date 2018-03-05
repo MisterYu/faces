@@ -2,9 +2,20 @@ import cv2
 
 
 class FaceDetect():
-    def __init__(self):
+    feature_file = {
+        'eye':'opencv_files/haarcascade_eye.xml',
+        'face0':'opencv_files/haarcascade_frontalface_24x24.xml',
+        'face1':'opencv_files/haarcascade_frontalface_20x20.xml',
+        'face2':'opencv_files/lbpcascade_frontalface.xml'
+    }
+
+    def __init__(self, feature=''):
         # TODO enable hot swapping different CascadeClassifiers or parameters
-        cascPath = 'opencv_files/haarcascade_frontalface_24x24.xml'
+        if feature in self.feature_file.keys():
+            cascPath = self.feature_file[feature]
+        else:
+            # default to face 24x24
+            cascPath = 'opencv_files/haarcascade_frontalface_24x24.xml'
         self.faceCascade = cv2.CascadeClassifier(cascPath)
 
     def in_frame(self, frame):
