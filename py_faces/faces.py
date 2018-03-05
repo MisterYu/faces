@@ -114,6 +114,8 @@ class faces(QtWidgets.QMainWindow, Ui_MainWindow):
                 if self.eye_detect:
                     eye_bboxes, eyes = self.eye_detector.in_frame(face)
                     self.morse_code_decoder.update_state(len(eyes))
+                    str_morse_code = 'Eye say: ' + self.morse_code_decoder.get_char_buffer()
+                    self.morse_code_label.setText(str_morse_code)
 
                 if self.hulk_out:
                     # make face green

@@ -130,6 +130,6 @@ class MorseCodeDecoder():
                 self.char_buffer.popleft()
             self.char_buffer.append(char)
 
-    def get_char_buffer_string(self):
+    def get_char_buffer(self):
         string = ''.join(list(self.char_buffer))
         return string
