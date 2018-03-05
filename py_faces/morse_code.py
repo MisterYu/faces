@@ -80,12 +80,22 @@ class MorseCodeDecoder():
         self.char_buffer = collections.deque()
 
     def update_state(self, n_eyes_open):
+        # determine state of eyes
         eye_state = 'O' if n_eyes_open == 2 else 'C'
+
+        # only do lots of processing if pre-existing eye state
         if self.eye_states:
+            # append current eye state to previous ones
             next_eye_states = self.eye_states + eye_state
+
+            # init to nothing
+            next_word = ''
+
+            # check if current is good and next is not
             if self.eye_states in self.valid_eye_states \
                     and next_eye_states not in self.valid_eye_states:
                 next_word = self.eye_states_2_words[self.eye_states]
+                # reset
                 self.eye_states = eye_state
 
             # if next eye state not homogenous then reset
@@ -97,6 +107,7 @@ class MorseCodeDecoder():
                 self.eye_states = next_eye_states
             next_word_buffer = self.word_buffer + next_word
 
+            # check for white spaces 1st
             if next_word in ['  ', ' ']:
                 if self.word_buffer in self.valid_word_buffers:
                     self.char_buffer += self.words_2_char[self.word_buffer]
@@ -108,6 +119,8 @@ class MorseCodeDecoder():
                 self.word_buffer = next_word
             else:
                 self.word_buffer = next_word_buffer
+
+        # init
         else:
             self.eye_states = eye_state
 
