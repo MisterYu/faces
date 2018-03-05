@@ -110,12 +110,12 @@ class MorseCodeDecoder():
             # check for white spaces 1st
             if next_word in ['  ', ' ']:
                 if self.word_buffer in self.valid_word_buffers:
-                    self.char_buffer += self.words_2_char[self.word_buffer]
-                self.char_buffer += self.words_2_char[next_word]
+                    self.char_buffer.append(self.words_2_char[self.word_buffer])
+                self.char_buffer.append(self.words_2_char[next_word])
                 self.word_buffer = ''
             elif self.word_buffer in self.valid_word_buffers \
                     and next_word_buffer not in self.valid_word_buffers:
-                self.char_buffer += self.words_2_char[next_word]
+                self.char_buffer.append(self.words_2_char[next_word])
                 self.word_buffer = next_word
             else:
                 self.word_buffer = next_word_buffer
