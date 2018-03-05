@@ -10,6 +10,8 @@ eye detection and morse code from blinks - eyes are detected and found but morse
 
 ## Installation:
 
+tested on Ubuntu 16.04
+
 checkout: `git clone git@github.com:MisterYu:faces.git`
 
 go into checkout directory: `cd faces`
@@ -26,7 +28,7 @@ install faces: `python3 setup.py`
 
 activate environment: `. env_face/bin/activate`
 
-`python3 faces.py` to bring up the gui
+`python3 faces.py` to bring up the gui in `py_faces` directory. Paths hard coded relative (sorry).
 
 everything is off by default
 
