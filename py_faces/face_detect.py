@@ -19,8 +19,12 @@ class FaceDetect():
         self.faceCascade = cv2.CascadeClassifier(cascPath)
 
     def in_frame(self, frame):
-        # suck the color out image
-        gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+        # suck the color out image if needed
+        if len(frame.shape) == 3:
+            gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+        else:
+            gray = frame.copy()
+
         # get bounding box(es) for face from cascade classifier
         bbox = self.faceCascade.detectMultiScale(
             gray,
