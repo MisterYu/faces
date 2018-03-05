@@ -1,4 +1,5 @@
 import sys
+import numpy as np
 from PyQt5 import QtCore, QtWidgets, QtGui
 from face_gui import Ui_MainWindow
 from cv_camera import cv_camera
@@ -15,6 +16,7 @@ class faces(QtWidgets.QMainWindow, Ui_MainWindow):
 
         # init objects that process faces
         self.face_detector = FaceDetect()
+        self.eye_detector = FaceDetect('eye')
         self.face_recognizer = FaceRecognition()    # this one is SLOOOOwwww
         self.face_recognizer.train('../face_data/')
 
@@ -26,6 +28,9 @@ class faces(QtWidgets.QMainWindow, Ui_MainWindow):
         self.camera_spinBox.setMaximum(self.camera.n_cameras-1)
         self.camera_spinBox.valueChanged.connect(self.change_camera)
         self.info_label.setText('ready to go!')
+
+        self.eye_detect = False
+        self.eyes_checkBox.stateChanged.connect(self.update_eye_detect)
 
         self.hulk_out = False
         self.hulk_checkBox.stateChanged.connect(self.update_hulk_out)
@@ -46,6 +51,9 @@ class faces(QtWidgets.QMainWindow, Ui_MainWindow):
         self.timer.timeout.connect(self.process_display_frame)
         self.timer.start(1000./self.camera.fps)
         self.info_label.setText('camera started')
+
+    def update_eye_detect(self):
+        self.eye_detect = self.eyes_checkBox.isChecked()
 
     def update_hulk_out(self):
         self.hulk_out = self.hulk_checkBox.isChecked()
@@ -96,6 +104,13 @@ class faces(QtWidgets.QMainWindow, Ui_MainWindow):
                     self.face_recognition_label.setText(str_recog)
                 # draw bounding boxes
                 x, y, w, h = bbox
+
+                if self.eye_detect:
+                    eye_bboxes, eyes = self.eye_detector.in_frame(face)
+                    print(len(eyes))
+                    #for eye_bbox, eye in zip(bboxes, faces):
+                    #    print(np.mean(eye))
+
                 if self.hulk_out:
                     # make face green
                     hulk_face = hulk.angry(face)
