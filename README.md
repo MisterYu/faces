@@ -1,7 +1,11 @@
 face detection - yup
 
-face recognition - nope
+face recognition - sorta. Currently only trained to recognize Beyonce.
 
-face something something - nope
+face greening - incomplete. Lazy implementation only paints entire square green. Needs something to do background subtraction to isolate face.
 
-face another something something? - nope
+eye detection and morse code from blinks - eyes are detected and found but morse code inconsistent
+
+test code - NOPE. need more time to write all the test code. Another case of TDD avoidance.
+
+C++ inclusion - NOPE. all time burned on feature implementation.
