@@ -7,6 +7,7 @@ from face_detect import FaceDetect
 from face_recognition import FaceRecognition
 import cv2
 import hulk
+from morse_code import MorseCodeDecoder
 
 
 class faces(QtWidgets.QMainWindow, Ui_MainWindow):
@@ -17,6 +18,7 @@ class faces(QtWidgets.QMainWindow, Ui_MainWindow):
         # init objects that process faces
         self.face_detector = FaceDetect()
         self.eye_detector = FaceDetect('eye')
+        self.morse_code_decoder = MorseCodeDecoder()
         self.face_recognizer = FaceRecognition()    # this one is SLOOOOwwww
         self.face_recognizer.train('../face_data/')
 
@@ -111,9 +113,7 @@ class faces(QtWidgets.QMainWindow, Ui_MainWindow):
 
                 if self.eye_detect:
                     eye_bboxes, eyes = self.eye_detector.in_frame(face)
-                    print(len(eyes))
-                    #for eye_bbox, eye in zip(bboxes, faces):
-                    #    print(np.mean(eye))
+                    self.morse_code_decoder.update_state(len(eyes))
 
                 if self.hulk_out:
                     # make face green
