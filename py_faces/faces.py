@@ -86,10 +86,13 @@ class faces(QtWidgets.QMainWindow, Ui_MainWindow):
         if self.face_detect:
             # do face detection
             bboxes, faces = self.face_detector.in_frame(frame)
+
             # non-Beyonce color
             box_color = (204, 255, 0)
+
             # update face status
             self.face_detect_label.setText('{0} faces found'.format(len(faces)))
+
             # loop thru faces and draw boxes in frame
             for bbox, face in zip(bboxes, faces):
                 # do Beyonce reconition
@@ -97,6 +100,7 @@ class faces(QtWidgets.QMainWindow, Ui_MainWindow):
                     label, confidence = self.face_recognizer.predict_face(face)
                     # default to no Beyonce; it's not common after all...
                     str_recog = 'Beyonce not recognized'
+
                     # if confidence of detection > threshold change text and box color
                     if confidence > self.b_threshold:
                         str_recog = 'Beyonce recognized @{0:5.4f} confidence'.format(confidence)
