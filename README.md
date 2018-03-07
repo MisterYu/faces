@@ -28,7 +28,7 @@ install faces: `python3 setup.py install`
 
 activate environment: `. env_face/bin/activate`
 
-`python3 faces.py` to bring up the gui in `py_faces` directory. Paths hard coded relative (sorry).
+`python3 faces.py` to bring up the gui in `faces` directory, i.e. `cd faces`. Paths hard coded relative (sorry).
 
 everything is off by default
 
