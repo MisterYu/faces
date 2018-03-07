@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-from distutil.core import setup
+from distutils.core import setup
 
 setup(name='faces',
     version='1.0',
