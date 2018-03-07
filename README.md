@@ -22,7 +22,7 @@ activate environment: `. env_face/bin/activate`
 
 install requisite modules: `pip install -r requirements.txt`
 
-install faces: `python3 setup.py`
+install faces: `python3 setup.py install`
 
 ## Usage:
 
